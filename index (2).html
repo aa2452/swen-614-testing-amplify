@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Capture</title>
+</head>
+<body>
+    <h1>Image Capture</h1>
+    <video id="videoElement" width="640" height="480" autoplay></video>
+    <button id="captureButton">Capture Image</button>
+    <canvas id="canvasElement" width="640" height="480" style="display: none;"></canvas>
+    <script>
+        const videoElement = document.getElementById('videoElement');
+        const captureButton = document.getElementById('captureButton');
+        const canvasElement = document.getElementById('canvasElement');
+        const streamConstraints = { video: true };
+
+        navigator.mediaDevices.getUserMedia(streamConstraints)
+            .then(function(stream) {
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.error('Error accessing webcam:', error);
+            });
+
+        captureButton.addEventListener('click', function() {
+            const context = canvasElement.getContext('2d');
+            context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+            canvasElement.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'captured_image.png';
+                a.click();
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        });
+    </script>
+</body>
+</html>
