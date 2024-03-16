@@ -2,8 +2,8 @@
 
 
 <input type="file" id="fileInput" />
-<button onclick="detectFaces()">Upload File</button>
-<div id="result"></div>
+<button onclick="uploadFile()">Upload File</button>
+
 
 <script>
     AWS.config.update({
@@ -43,23 +43,3 @@
 
 
 	
-<script>
- function detectFaces() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        const params = {
-            Image: {
-                Bytes: file
-            }
-        };
-
-        rekognition.detectFaces(params, function(err, data) {
-            if (err) {
-                console.log('Error detecting faces:', err);
-            } else {
-                console.log('Faces detected:', data.FaceDetails.length);
-                displayResults(data.FaceDetails);
-            }
-        });
-    }
-</script>
