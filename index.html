@@ -62,22 +62,9 @@
     }
 </script>
 
+
+	
 <script>
-    function displayResults(faceDetails) {
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = ''; // Clear previous results
-
-        faceDetails.forEach((face, index) => {
-            const faceElement = document.createElement('div');
-            faceElement.innerHTML = `<p>Face ${index + 1}:</p>
-                                     <p>Age Range: ${face.AgeRange.Low} - ${face.AgeRange.High}</p>
-                                     <p>Gender: ${face.Gender.Value}</p>
-                                     <p>Smile: ${face.Smile.Value}</p>
-                                     <p>Emotions: ${face.Emotions.map(e => e.Type).join(', ')}</p>`;
-            resultDiv.appendChild(faceElement);
-        });
-    }
-
  function detectFaces() {
         const fileInput = document.getElementById('fileInput');
         const file = fileInput.files[0];
