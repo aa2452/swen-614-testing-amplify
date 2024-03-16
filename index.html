@@ -2,8 +2,8 @@
 
 
 <input type="file" id="fileInput" />
-<button onclick="uploadFile()">Upload File</button>
-
+<button onclick="detectFaces()">Upload File</button>
+<div id="result"></div>
 
 <script>
     AWS.config.update({
@@ -13,13 +13,14 @@
     });
 
     const s3 = new AWS.S3();
+	const rekognition = new AWS.Rekognition();
 </script>
 
 <script>
     function uploadFile() {
         const fileInput = document.getElementById('fileInput');
         const file = fileInput.files[0];
-        const fileName = file.name;
+        const fileName = file.name; //randomized for complexity 
         const fileKey = 'uploads/' + fileName; // Change the key as per your requirement
 
         const params = {
@@ -34,6 +35,68 @@
             } else {
                 console.log('File uploaded successfully:', data.Location);
                 // You can perform additional actions after successful upload
+            }
+        });
+    }
+</script>
+
+<script>
+    function analyzeImage() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        const params = {
+            Image: {
+                Bytes: file
+            },
+			Attributes: [
+				'ALL',
+			]
+        };
+
+        rekognition.detectFaces(params, function(err, data) {
+            if (err) {
+                console.log('Error analyzing image:', err);
+            } else {
+                console.log('Labels detected:', data.Labels);
+                // You can display the labels or perform other actions here
+            }
+        });
+    }
+</script>
+
+<script>
+    function displayResults(faceDetails) {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = ''; // Clear previous results
+
+        faceDetails.forEach((face, index) => {
+            const faceElement = document.createElement('div');
+            faceElement.innerHTML = `<p>Face ${index + 1}:</p>
+                                     <p>Age Range: ${face.AgeRange.Low} - ${face.AgeRange.High}</p>
+                                     <p>Gender: ${face.Gender.Value}</p>
+                                     <p>Smile: ${face.Smile.Value}</p>
+                                     <p>Emotions: ${face.Emotions.map(e => e.Type).join(', ')}</p>`;
+            resultDiv.appendChild(faceElement);
+        });
+    }
+</script>
+
+<script>
+ function detectFaces() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        const params = {
+            Image: {
+                Bytes: file
+            }
+        };
+
+        rekognition.detectFaces(params, function(err, data) {
+            if (err) {
+                console.log('Error detecting faces:', err);
+            } else {
+                console.log('Faces detected:', data.FaceDetails.length);
+                displayResults(data.FaceDetails);
             }
         });
     }
