@@ -39,27 +39,6 @@
         });
     }
 
-    function analyzeImage() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        const params = {
-            Image: {
-                Bytes: file
-            },
-			Attributes: [
-				'ALL',
-			]
-        };
-
-        rekognition.detectFaces(params, function(err, data) {
-            if (err) {
-                console.log('Error analyzing image:', err);
-            } else {
-                console.log('Labels detected:', data.Labels);
-                // You can display the labels or perform other actions here
-            }
-        });
-    }
 </script>
 
 
