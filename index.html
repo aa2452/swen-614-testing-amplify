@@ -14,31 +14,21 @@
         secretAccessKey: SECRET_KEY,
         region: 'us-east-2'
     });
-
-    const s3 = new AWS.S3();
 </script>
 
-<script>
-    function uploadFile() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        const fileName = file.name;
-        const fileKey = 'uploads/' + fileName; // Change the key as per your requirement
-
-        const params = {
-            Bucket: 'aa2452-swen-614-team-bucket',
-            Key: fileKey,
-            Body: file
-        };
-
-        s3.upload(params, function(err, data) {
-            if (err) {
-                console.log('Error uploading file:', err);
-            } else {
-                console.log('File uploaded successfully:', data.Location);
-                // You can perform additional actions after successful upload
-            }
-        });
-    }
-</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture and Upload Image</title>
+</head>
+<body>
+    <h1>Capture and Upload Image</h1>
+    <video id="videoElement" width="640" height="480" autoplay></video>
+    <button onclick="captureAndUpload()">Capture and Upload</button>
+    <canvas id="canvasElement" width="640" height="480" style="display: none;"></canvas>
+	<script src="script.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1030.0.min.js"></script>
+</body>
+</html>
 
