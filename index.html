@@ -22,7 +22,7 @@
 
     <script>
         // Access Amplify environment variables
-        const apiUrl = "I'm in love with this" ;
+        const apiUrl = SECRET_KEY;
         const awsRegion = "Im in love with that";
 
         // Display environment variables on the page
@@ -35,7 +35,7 @@
         
 
     AWS.config.update({
-        accessKeyId: ROOT_KEY,
+        accessKeyId: SECRET_KEY,
         secretAccessKey: SECRET_KEY,
         region: 'us-east-2'
     });
