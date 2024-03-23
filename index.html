@@ -6,35 +6,11 @@
 
 <input type="file" id="fileInput" />
 <button onclick="uploadFile()">Upload File</button>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amplify Environment Variables</title>
-</head>
-<body>
-    <h1>Amplify Environment Variables</h1>
-    <p>API URL: <span id="apiUrl"></span></p>
-    <p>AWS Region: <span id="awsRegion"></span></p>
 
 
-</body>
-
-    <script>
-        // Access Amplify environment variables
-        const apiUrl = SECRET_KEY;
-        const awsRegion = ROOT_KEY;
-
-        // Display environment variables on the page
-        document.getElementById('apiUrl').textContent = apiUrl;
-        document.getElementById('awsRegion').textContent = awsRegion;
-    </script>
-
-
-<script>    
-        
-
+<script>
     AWS.config.update({
-        accessKeyId: SECRET_KEY,
+        accessKeyId: ROOT_KEY,
         secretAccessKey: SECRET_KEY,
         region: 'us-east-2'
     });
@@ -65,5 +41,4 @@
         });
     }
 </script>
-
 
