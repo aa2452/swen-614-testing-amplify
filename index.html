@@ -12,8 +12,8 @@
         };
 
     AWS.config.update({
-        accessKeyId: apiKey,
-        secretAccessKey: apiUrl,
+        accessKeyId: amplifyEnvVars.apiKey,
+        secretAccessKey: amplifyEnvVars.apiUrl,
         region: 'us-east-2'
     });
 
