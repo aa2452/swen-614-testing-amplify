@@ -1,12 +1,3 @@
-document.write('<script src="./aws-exports.js"></script>');
-
-
-AWS.config.update({
-        accessKeyId: ROOT_KEY,
-        secretAccessKey: SECRET_KEY,
-        region: 'us-east-2'
-});
-
 
 
 const videoElement = document.getElementById('videoElement');
