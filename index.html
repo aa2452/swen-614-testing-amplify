@@ -1,45 +1,52 @@
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1101.0.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>File Upload</h1>
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Upload</button>
+    <div id="status"></div>
 
-
-<input type="file" id="fileInput" />
-<button onclick="uploadFile()">Upload File</button>
-
-
-<script>
-    AWS.config.update({
-        accessKeyId: '',
-        secretAccessKey: '',
-        region: 'us-east-2'
-    });
-
-    const s3 = new AWS.S3();
-	const rekognition = new AWS.Rekognition();
-</script>
-
-<script>
-    function uploadFile() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        const fileName = file.name; //randomized for complexity 
-        const fileKey = 'uploads/' + fileName; // Change the key as per your requirement
-
-        const params = {
-            Bucket: 'aa2452-swen-614-team-bucket',
-            Key: fileKey,
-            Body: file
-        };
-
-        s3.upload(params, function(err, data) {
-            if (err) {
-                console.log('Error uploading file:', err);
-            } else {
-                console.log('File uploaded successfully:', data.Location);
-                // You can perform additional actions after successful upload
-            }
+    <script src="https://unpkg.com/aws-sdk@2.1003.0/dist/aws-sdk.min.js"></script>
+    <script>
+        const bucketName = 'aa2452-swen-614-team-bucket';
+        const s3 = new AWS.S3({
+            apiVersion: '2006-03-01',
+            region: 'us-east-2'
         });
-    }
 
-</script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
 
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
 
-	
+            const key = 'uploads/' + file.name;
+
+            const params = {
+                Bucket: bucketName,
+                Key: key,
+                Body: file,
+                ACL: 'public-read'  // Adjust ACL as needed
+            };
+
+            s3.upload(params, function(err, data) {
+                if (err) {
+                    console.error('Error uploading file:', err);
+                    document.getElementById('status').textContent = 'Error uploading file.';
+                } else {
+                    console.log('File uploaded successfully:', data.Location);
+                    document.getElementById('status').textContent = 'File uploaded successfully.';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
