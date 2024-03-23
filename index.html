@@ -6,9 +6,14 @@
 
 
 <script>
+	const amplifyEnvVars = {
+            apiKey: process.env.rootKey,
+            apiUrl: process.env.secretKey
+        };
+
     AWS.config.update({
-        accessKeyId: process.env.rootKey,
-        secretAccessKey: process.env.secretKey,
+        accessKeyId: apiKey,
+        secretAccessKey: apiUrl,
         region: 'us-east-2'
     });
 
