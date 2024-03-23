@@ -7,8 +7,8 @@
 
 <script>
     AWS.config.update({
-        accessKeyId: rootKey,
-        secretAccessKey: secretKey,
+        accessKeyId: process.env.rootKey,
+        secretAccessKey: process.env.secretKey,
         region: 'us-east-2'
     });
 
