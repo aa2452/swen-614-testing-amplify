@@ -1,4 +1,4 @@
-
+<script src="aws-exports.js"><script> 
 
 const videoElement = document.getElementById('videoElement');
 const canvasElement = document.getElementById('canvasElement');
@@ -20,7 +20,7 @@ function captureAndUpload() {
     context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
 
     canvasElement.toBlob(function(blob) {
-        const bucketName = 'aa2452-swen-614-team-bucket';
+        bucketName;
         const region = 'us-east-2';
         const key =  Date.now() + '.png';
 
