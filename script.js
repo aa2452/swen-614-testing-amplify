@@ -1,5 +1,3 @@
-import {BUCKET_NAME} from ./aws-exports.js
-
 const videoElement = document.getElementById('videoElement');
 const canvasElement = document.getElementById('canvasElement');
 const uploadButton = document.querySelector('button');
@@ -20,7 +18,7 @@ function captureAndUpload() {
     context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
 
     canvasElement.toBlob(function(blob) {
-        const bucketName = BUCKET_NAME;
+        const bucketName = 'swen_614_source_bucket';
         const region = 'us-east-2';
         const key =  Date.now() + '.png';
 
