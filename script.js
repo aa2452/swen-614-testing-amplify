@@ -1,4 +1,4 @@
-<script src="aws-exports.js"><script> 
+import {BUCKET_NAME} from ./aws-exports.js
 
 const videoElement = document.getElementById('videoElement');
 const canvasElement = document.getElementById('canvasElement');
