@@ -20,7 +20,7 @@ function captureAndUpload() {
     context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
 
     canvasElement.toBlob(function(blob) {
-        bucketName;
+        const bucketName = BUCKET_NAME;
         const region = 'us-east-2';
         const key =  Date.now() + '.png';
 
