@@ -9,5 +9,4 @@ customHeaders:
             value: '*'
           - key: Access-Control-Allow-Methods
             value: DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT
-            key: Access-Control-Allow-Headers
-            value: '*'
+           
