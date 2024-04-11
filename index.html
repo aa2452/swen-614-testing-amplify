@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1101.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aws-sdk@2.1003.0/dist/aws-sdk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.7/dist/aws-amplify.min.js"></script>
@@ -6,27 +7,19 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <meta http-equiv="Access-Control-Allow-Methods" content="*">
-    <meta http-equiv="Access-Control-Allow-Headers" content="*">
-    <title>Capture and Upload Image</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 6 :: Face Detection and Upload</title>
 </head>
 <body>
-    <h1>Capture and Upload Image</h1>
-    <video id="videoElement" width="640" height="480" autoplay></video>
-    <button onclick="captureAndUpload()">Capture and Upload</button>
-    <canvas id="canvasElement" width="640" height="480" style="display: none;"></canvas>
-	<script src="script.js"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1101.0.min.js"></script>
+  <video id="video" width="500" height="400" autoplay></video>
+  <canvas id="canvas" width="500" height="400"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1002.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
 
-<script>
-AWS.config.update({
-        accessKeyId: ROOT_KEY,
-        secretAccessKey: SECRET_KEY,
-        region: 'us-east-2'
-});
-</script>
