@@ -84,7 +84,7 @@ const uploadToS3 = () => {
 
   // Define S3 upload parameters
   const params = {
-    Bucket: 'aa2452-swen-614-team-bucket',
+    Bucket: 'swen-614-source-bucket-pic',
     Key: filename,
     Body: blob,
     ACL: '',
