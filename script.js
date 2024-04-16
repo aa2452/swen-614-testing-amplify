@@ -77,14 +77,14 @@ const uploadToS3 = () => {
 	AWS.config.update({
 			accessKeyId: ROOT_KEY,
 			secretAccessKey: SECRET_KEY,
-			region: 'us-east-2'
+			region: 'us-east-1'
 	});
 
   const s3 = new AWS.S3();
 
   // Define S3 upload parameters
   const params = {
-    Bucket: 'swen-614-source-bucket-pic',
+    Bucket: 'swen-614-source-bucket-pic-testt',
     Key: filename,
     Body: blob,
     ACL: '',
